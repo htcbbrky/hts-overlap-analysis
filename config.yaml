@@ -1,0 +1,54 @@
+# HTS Çakışma Analiz Konfigürasyonu
+# Versiyon: 1.0.0
+
+# Fuzzy Matching Ayarları
+matching:
+  threshold: 85  # %85 benzerlik eşiği
+  use_phone_validation: true
+  use_imei_validation: true
+  use_tc_validation: false  # TC kimlik no varsa aktif edin
+
+# Çakışma Analizi Ayarları
+analysis:
+  time_tolerance_level1: 30   # Seviye 1: 30 dakika
+  time_tolerance_level2: 60   # Seviye 2: 1 saat
+  same_day_analysis: true     # Aynı gün analizi
+  min_overlap_count: 1        # Minimum çakışma sayısı
+
+# Veri İşleme Ayarları
+processing:
+  encoding: 'utf-8'
+  date_format: 'dd.mm.yyyy hh:mm:ss'
+  skip_invalid_records: true
+  chunk_size: 10000  # Büyük dosyalar için chunk boyutu
+  max_workers: 4     # Paralel işleme thread sayısı
+
+# Baz İstasyonu Ayarları
+base_station:
+  extract_from_parentheses: true
+  min_code_length: 6
+  max_code_length: 12
+  validate_operator: false
+
+# Raporlama Ayarları
+reporting:
+  include_statistics: true
+  include_charts: false
+  export_formats:
+    - excel
+    - pdf
+  output_encoding: 'utf-8'
+  
+# Loglama Ayarları
+logging:
+  level: 'INFO'  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  file: 'logs/analysis.log'
+  console_output: true
+  max_file_size_mb: 50
+  backup_count: 5
+
+# Performans Ayarları
+performance:
+  cache_enabled: true
+  cache_size_mb: 500
+  memory_limit_gb: 4
